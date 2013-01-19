@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 {% block title %} Template Testing {% endblock %}
-{% block head %} <script>
-function functioncall(var1){
-alert(var1);
-}
-</script>
+{% block head %}
 {% endblock %}
 {% block content %}
-<center><img src="../static/img/banner.jpg" /><br />
+<center>
+  <img src="../static/img/banner.jpg" /><br />
   <form>
     <fieldset>
       <input type="text" placeholder="URL of Book here">
@@ -16,5 +13,4 @@ alert(var1);
     </fieldset>
   </form>
 </center>
-
 {% endblock %}
