@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %} Soundtrack Playlist {% endblock %}
-{% block head %} {% endblock %}
 {% block content %}
    {% if tracks %}
-   <iframe src="https://embed.spotify.com/?uri=spotify:trackset:Soundtrack:playlist:{{tracks}}&theme=white" frameborder="0" width="400" height="720" allowtransparency="true"></iframe>
+   <iframe src="https://embed.spotify.com/?uri=spotify:trackset:Soundtrack:playlist:{{ tracks }} &theme=white" frameborder="0" width="400" height="720" allowtransparency="true"></iframe>
 
    {% else %}
       <h1>Enter Text</h1>
