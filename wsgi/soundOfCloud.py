@@ -3,7 +3,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template('spotify.html')
+    return "index"
+
+@app.route("/ray")
+def ray():
+    return render_template('ray.html')
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
