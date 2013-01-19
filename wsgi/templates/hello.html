@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block title %} Template Testing {% endblock %}
+{% block head %} {% endblock %}
 {% block content %}
-{% if name %}
-<p class="text-info">Hello {{ name }}!</p>
-{% else %}
-<h1>Hello World!</h1>
-{% endif %}
+
+   {% if name %}
+
+      <p class="text-info">Hello {{ name }}!</p>
+
+   {% else %}
+
+      <h1>Hello World!</h1>
+
+   {% endif %}
+
 {% endblock %}
