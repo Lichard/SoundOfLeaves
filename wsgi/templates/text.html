@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Template Testing {% endblock %}
+{% block head %} <script>
+function functioncall(var1){
+alert(var1);
+}
+</script>
+{% endblock %}
+{% block content %}
+<center><img src="../static/img/banner.jpg" /><br />
+  <form>
+    <fieldset>
+      <input type="text" placeholder="URL of Book here" id="url">
+      <span class="help-block">This url will be parsed in our analytics engine and we will use it to blah</span>
+      <button type="submit" class="btn">Submit!</button><!--Not sure how to pass the input text to the javascript.-->
+    </fieldset>
+  </form>
+<br />
+{% if error %}
+<p class="text-error"> {{ error }} </p>
+{% endif %}
+</center>
+
+{% endblock %}
