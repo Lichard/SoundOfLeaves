@@ -8,16 +8,15 @@ def index():
 @app.route("/ray")
 def ray():
     return render_template('ray.html')
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
-    return render_template('hello.html', name=name)
+
 @app.route('/connie', methods=['POST','GET'])
 def connie():
-   return 'TODO' 
+   return 'TODO get tracks, send to richard' 
+
 @app.route('/john')
 def john():
-    return 'PARSE TEXT'
+    return 'PARSE TEXT and send results to connie'
+
 @app.route('/playlist', methods=['POST'])
 def playlist(tracks=None):
     return render_template('spotify.html', tracks=request.form['tracks'])
