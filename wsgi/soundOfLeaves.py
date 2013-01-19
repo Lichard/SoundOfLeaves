@@ -25,9 +25,15 @@ def ray():
 def connie():
    return 'TODO get tracks, send to richard'
 
-def texts():
-    URL = "http://access.alchemyapi.com/calls/url/URLGetTextSentiment?apikey=6b961c784967a94fe1829d3d065016f87bf38153&outputMode=json&url=http://boingboing.net/2013/01/12/rip-aaron-swartz.html"
+def texts(name):
+    URL = "http://access.alchemyapi.com/calls/url/URLGetTextSentiment?apikey=6b961c784967a94fe1829d3d065016f87bf38153&outputMode=json&url=" + name
+#This is where we json parse.
     return theText
+
+data = json.load(urllib2.urlopen('http://access.alchemyapi.com/calls/html/HTMLGetTextSentiment?apikey=6b961c784967a94fe1829d3d065016f87bf38153&outputMode=json&url=http://www.classicshorts.com/stories/danger.html')
+
+print data
+
 
 if __name__ == '__main__':
     app.run()
