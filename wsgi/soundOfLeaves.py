@@ -1,5 +1,8 @@
 import urllib2
 import json
+import AlchemyAPI
+from httplib2 import Http
+from urllib import urlencode
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -33,9 +36,15 @@ def texts():
 #stuff = urllib.urlopen("http://www.gutenberg.org/cache/epub/1661/pg1661.txt")
 #real = stuff.read()
 #stuff.close()
-req = urllib2.Request("http://locahost:5000/bookone/sherlock.json")
-opener = urllib2.build_opener()
-free = opener.open(req)
-json = json. loads(free.read())
-print json
-print json['unit']
+#hello = Http()
+#data = URLGEtTextSentiment()
+#resp, content = hello.request("http://www.gutenberg.org/cache/epub/1661/pg1661.txt", "POST", urlencode(data)
+#req = urllib2.Request("http://locahost:5000/bookone/sherlock.json")
+#opener = urllib2.build_opener()
+#free = opener.open(req)
+#json = json. loads(free.read())
+#print json
+#print json['unit']
+myAlcObject = AlchemyAPI.AlchemyAPI()
+myAlcObject.loadAPIKey("key.txt")
+result = myAlcObject.HTMLGetTextSentiment(theText)
