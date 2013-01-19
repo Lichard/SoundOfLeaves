@@ -1,7 +1,9 @@
-<!doctype html>
-<title>Hello from Flask</title>
+{% extends "template/base.html" %}
+{% block title %} Template Testing {% endblock %}
+{% block content %}
 {% if name %}
 <p class="text-info">Hello {{ name }}!</p>
 {% else %}
-  <h1>Hello World!</h1>
+<h1>Hello World!</h1>
 {% endif %}
+{% endblock %}

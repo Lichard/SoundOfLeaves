@@ -1,0 +1,19 @@
+{% extends root.html %}
+{% block all%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>{% block title %} {% endblock %} | "Sound of Leaves"</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="content">
+      {% block content %}{% end block %}
+    </div>
+    <div id="footer">
+      {% block footer %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
