@@ -14,15 +14,15 @@ def ray():
     return render_template('ray.html')
 
 @app.route('/connie', methods=['POST'])
-def connie(search=None):
-    songlist = song.search(mood=search, buckets=['id:spotify-WW', 'tracks'], limit=True, results=5)
+def connie(mood=None):
+    songlist = song.search(mood=request.form['mood'], buckets=['tracks','id:spotify-WW'], limit=True, results=5)
     foreign_ids = []
     for item in songlist:
         for t in item.get_tracks('spotify-WW'):
             foreign_ids.append(t['foreign_id'][17:])
         comma = ","
         foreign_id_string = comma.join(foreign_ids)
-        print foreign_id_string
+    print foreign_id_string
     return render_template("spotify.html", tracks=foreign_id_string)
 
 @app.route('/john')
