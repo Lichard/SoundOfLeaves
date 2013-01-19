@@ -7,7 +7,7 @@ def index():
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
-def hello():
+def hello(name=None):
     return render_template('hello.html', name=name)
 
 if __name__ == '__main__':
