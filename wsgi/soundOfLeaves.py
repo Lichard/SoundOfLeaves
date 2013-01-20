@@ -1,9 +1,8 @@
 import urllib, json, sys
-#import json
-#import sys #Why is this here? Do we need it?
+from pprint import pprint
 from flask import Flask, render_template, request
 from pyechonest import config, song
-#from pyechonest import song
+
 
 config.ECHO_NEST_API_KEY="IY52OEPU4LRFUIY8R"
 ALCHEMY_API_KEY="6b961c784967a94fe1829d3d065016f87bf38153"
@@ -23,6 +22,7 @@ def text():
 @app.route('/playlist', methods=['POST'])
 def connie(URL=None):
     mood = texts(request.form['URL'])
+    cate = cates(request.form['URL'])
     songlist = song.search(mood, buckets=['tracks','id:spotify-WW'], limit=True, results=5)
     foreign_ids = []
     for item in songlist:
@@ -38,7 +38,19 @@ def texts(name):
     jsonResponse=json.loads(urllib.urlopen(analyzeURL).read())
     docSentiment = jsonResponse[u'docSentiment']
     mood = docSentiment[u'type']
+
     return mood
+
+def cates(name):
+    global ALCHEMY_API_KEY
+    analyzeURL2 = "http://access.alchemyapi.com/calls/url/URLGetRankedConcepts?apikey=" + ALCHEMY_API_KEY + "&outputMode=json&url=" + name
+    jsonResponse2=json.loads(urllib.urlopen(analyzeURL2).read())
+    docRanked = jsonResponse2[u'docRanked']
+    cate = docRanked[u'category']
+
+    return cate
+
+
 
 if __name__ == '__main__':
     app.run()
