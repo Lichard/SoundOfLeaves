@@ -23,7 +23,7 @@ def text():
 @app.route('/playlist', methods=['POST'])
 def connie(URL=None):
     mood = texts(request.form['URL'])
-    songlist = song.search(mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=5)
+    songlist = song.search(mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=20)
     foreign_ids = []
     for item in songlist:
         for t in item.get_tracks('spotify-WW'):
