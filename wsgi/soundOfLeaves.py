@@ -24,23 +24,26 @@ def connie(URL=None):
     mood = texts(request.form['URL'])
     cate = cates(request.form['URL'])
     key = keys(request.form['URL'])
-    songlist = song.search(mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=20)
+
+    genre = match(cate)
+    songlist = song.search(style=genre, mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=30, sort='key-asc')
     foreign_ids = []
     for item in songlist:
         for t in item.get_tracks('spotify-WW'):
             foreign_ids.append(t['foreign_id'][17:])
+            break
         comma = ","
         foreign_id_string = comma.join(foreign_ids)
     return render_template("playlist.html", tracks=foreign_id_string)
 
+def match(cate):
     dict1 = {'arts_entertainment':'Classical','business':'Easy Listening','computer_internet':'Electronic','culture_politics':'Pop','gaming':'Electronica','health':'Meditation','law_crime':'Drama','religion':'Gospel','recreation':'Rock','science_tech':'TV Soundtracks','sports':'Metal','weather':'Ambient'}
 
     dict2 = {'arts_entertainment':'Jazz','business':'Film Business','computer_internet':'Ambient Pop','culture_politics':'Party Rap','gaming':'Dub','health':'Relaxation','law_crime':'Orchestral','religion':'Christian Rock','recreation':'Funk','science_tech':'Progressive Alternative','Sports':'Alternative Pop/Rock','Weather':'Nature'}
-
-def match(cate):
-    global dict1, dict2
     random.seed()
-    if random.random() <= 0.5:
+    magicnum = random.random()
+    print magicnum
+    if magicnum <= 0.5:
         theDict = dict2
     else:
         theDict = dict1
@@ -54,17 +57,23 @@ def texts(name):
     jsonResponse=json.loads(urllib.urlopen(analyzeURL).read())
     docSentiment = jsonResponse[u'docSentiment']
     mood = docSentiment[u'type']
+    magicnum = random.random()
     if mood == 'positive':
-        mood='happy'
+        if magicnum<=0.5:
+            mood='calm'
+        else:
+            mood='happy'
     else:
-        mood='angry'
+        if magicnum<0.5:
+            mood='sad'
+        else:
+            mood='angry'
     return mood
 
 def cates(name):
     global ALCHEMY_API_KEY
     analyzeURL2 = "http://access.alchemyapi.com/calls/url/URLGetCategory?apikey=" + ALCHEMY_API_KEY + "&outputMode=json&url=" + name
     jsonResponse2=json.loads(urllib.urlopen(analyzeURL2).read())
-    pprint.pprint(jsonResponse2)
     cate = jsonResponse2[u'category']
     return cate
 
