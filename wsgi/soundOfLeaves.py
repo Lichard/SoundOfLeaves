@@ -23,6 +23,8 @@ def text():
 def connie(URL=None):
     mood = texts(request.form['URL'])
     cate = cates(request.form['URL'])
+    genre = match(cate)
+    print genre
     songlist = song.search(mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=20)
     foreign_ids = []
     for item in songlist:
@@ -32,14 +34,14 @@ def connie(URL=None):
         foreign_id_string = comma.join(foreign_ids)
     return render_template("playlist.html", tracks=foreign_id_string)
 
+def match(cate):
     dict1 = {'arts_entertainment':'Classical','business':'Easy Listening','computer_internet':'Electronic','culture_politics':'Pop','gaming':'Electronica','health':'Meditation','law_crime':'Drama','religion':'Gospel','recreation':'Rock','science_tech':'TV Soundtracks','sports':'Metal','weather':'Ambient'}
 
     dict2 = {'arts_entertainment':'Jazz','business':'Film Business','computer_internet':'Ambient Pop','culture_politics':'Party Rap','gaming':'Dub','health':'Relaxation','law_crime':'Orchestral','religion':'Christian Rock','recreation':'Funk','science_tech':'Progressive Alternative','Sports':'Alternative Pop/Rock','Weather':'Nature'}
-
-def match(cate):
-    global dict1, dict2
     random.seed()
-    if random.random() <= 0.5:
+    magicnum = random.random()
+    print magicnum
+    if magicnum <= 0.5:
         theDict = dict2
     else:
         theDict = dict1
@@ -63,7 +65,6 @@ def cates(name):
     global ALCHEMY_API_KEY
     analyzeURL2 = "http://access.alchemyapi.com/calls/url/URLGetCategory?apikey=" + ALCHEMY_API_KEY + "&outputMode=json&url=" + name
     jsonResponse2=json.loads(urllib.urlopen(analyzeURL2).read())
-    pprint.pprint(jsonResponse2)
     cate = jsonResponse2[u'category']
     return cate
 
