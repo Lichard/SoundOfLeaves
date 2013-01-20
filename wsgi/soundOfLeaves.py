@@ -23,7 +23,7 @@ def text():
 @app.route('/playlist', methods=['POST'])
 def connie(URL=None):
     mood = texts(request.form['URL'])
-    songlist = song.search(mood, buckets=['tracks','id:spotify-WW'], limit=True, results=5)
+    songlist = song.search(mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=5)
     foreign_ids = []
     for item in songlist:
         for t in item.get_tracks('spotify-WW'):
@@ -38,6 +38,10 @@ def texts(name):
     jsonResponse=json.loads(urllib.urlopen(analyzeURL).read())
     docSentiment = jsonResponse[u'docSentiment']
     mood = docSentiment[u'type']
+    if mood == 'positive':
+        mood='happy'
+    else:
+        mood='sad'
     return mood
 
 if __name__ == '__main__':
