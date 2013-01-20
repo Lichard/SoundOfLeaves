@@ -1,12 +1,49 @@
 {% extends "base.html" %}
-{% block title %} Soundtrack Playlist {% endblock %}
+
+{% block title %} Enjoy the Book! {% endblock %}
+
+{% block head %} 
+  <!-- Include the Monocle library and styles -->
+  <script src="scripts/monocore.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/monocore.css" />
+  <style>
+    #reader { width: 300px; height: 400px; border: 1px solid #000; }
+  </style>
+{% endblock %}
+
 {% block content %}
    {% if tracks %}
-   <iframe src="https://embed.spotify.com/?uri=spotify:trackset:Soundtrack:playlist:{{ tracks }} &theme=white" frameborder="0" width="400" height="720" allowtransparency="true"></iframe>
-
-   {% else %}
-      <h1>Enter Text</h1>
-
+<div class="row-fluid">
+  <div class="span3 offset2">
+   <iframe src="https://embed.spotify.com/?uri=spotify:trackset:Soundtrack:playlist:{{ tracks }} &theme=white" frameborder="0" width="400" height="470" allowtransparency="true"></iframe>
+</div>
+<div class="span5 offset1" id="reader" style="width:370px; height:470px; background:#FFFFFF">
+<!--<p style="text-align:left" class="text-muted"> 
+<h3>Divine Comedy<h3>
+<br />
+<h4>Dante</h4>
+<br /><br /><br /><br />
+&nbsp &nbsp &nbsp &nbsp His glory, by whose might all things are mov'd,
+Pierces the universe, and in one part
+Sheds more resplendence, elsewhere less.  In heav'n,
+That largeliest of his light partakes, was I,
+Witness of things, which to relate again
+Surpasseth power of him who comes from thence;
+For that, so near approaching its desire
+Our intellect is to such depth absorb'd,
+That memory cannot follow.  Nathless all,
+That in my thoughts I of that sacred realm
+Could store, shall now be matter of my song. 
+<br /><br />
+&nbsp &nbsp &nbsp &nbsp Benign Apollo! this last labour aid,
+And make me such a vessel of thy worth,
+As thy own laurel claims of me</p>
+</div>
+-->
+<iframe src="http://monocle.inventivelabs.com.au/books/the-velveteen-rabbit" class="embeddedBook"></iframe>
+<script>Monocle.Reader('reader');</script>
    {% endif %}
 
 {% endblock %}
+
+{% block footer %} {% endblock %}
