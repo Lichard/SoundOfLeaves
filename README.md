@@ -2,4 +2,6 @@ SoundOfLeaves
 =============
 
 PennApps 2013s team R2C2.  
-Soundtrack for your leisure reading.
+Soundtrack for your leisure reading.  
+(soundofleaves-r2c2.rhcloud.com)[Demo hosted on OpenShift]  
+Built with AlchemyAPI, Spotify, Monocle, and Flask.
