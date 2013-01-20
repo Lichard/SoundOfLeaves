@@ -41,7 +41,7 @@ def texts(name):
     if mood == 'positive':
         mood='happy'
     else:
-        mood='sad'
+        mood='angry'
     return mood
 
 if __name__ == '__main__':
