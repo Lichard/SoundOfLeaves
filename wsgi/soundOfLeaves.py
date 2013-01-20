@@ -25,11 +25,14 @@ def connie(URL=None):
     cate = cates(request.form['URL'])
     genre = match(cate)
     print genre
-    songlist = song.search(mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=20)
+    print mood
+    print cate
+    songlist = song.search(style=genre, mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=30, sort='key-asc')
     foreign_ids = []
     for item in songlist:
         for t in item.get_tracks('spotify-WW'):
             foreign_ids.append(t['foreign_id'][17:])
+            break
         comma = ","
         foreign_id_string = comma.join(foreign_ids)
     return render_template("playlist.html", tracks=foreign_id_string)
@@ -55,10 +58,17 @@ def texts(name):
     jsonResponse=json.loads(urllib.urlopen(analyzeURL).read())
     docSentiment = jsonResponse[u'docSentiment']
     mood = docSentiment[u'type']
+    magicnum = random.random()
     if mood == 'positive':
-        mood='happy'
+        if magicnum<=0.5:
+            mood='calm'
+        else:
+            mood='happy'
     else:
-        mood='angry'
+        if magicnum<0.5:
+            mood='sad'
+        else:
+            mood='angry'
     return mood
 
 def cates(name):
