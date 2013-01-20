@@ -1,5 +1,4 @@
-import urllib, json, sys
-from pprint import pprint
+import urllib, json, random
 from flask import Flask, render_template, request
 from pyechonest import config, song
 
@@ -31,6 +30,21 @@ def connie(URL=None):
         comma = ","
         foreign_id_string = comma.join(foreign_ids)
     return render_template("playlist.html", tracks=foreign_id_string)
+
+    dict1 = {'arts_entertainment':'Classical','business':'Easy Listening','computer_internet':'Electronic','culture_politics':'Pop','gaming':'Electronica','health':'Meditation','law_crime':'Drama','religion':'Gospel','recreation':'Rock','science_tech':'TV Soundtracks','sports':'Metal','weather':'Ambient'}
+
+    dict2 = {'arts_entertainment':'Jazz','business':'Film Business','computer_internet':'Ambient Pop','culture_politics':'Party Rap','gaming':'Dub','health':'Relaxation','law_crime':'Orchestral','religion':'Christian Rock','recreation':'Funk','science_tech':'Progressive Alternative','Sports':'Alternative Pop/Rock','Weather':'Nature'}
+
+def match(cate):
+    global dict1, dict2
+    random.seed()
+    if random.random() <= 0.5:
+        theDict = dict2
+    else:
+        theDict = dict1
+    return theDict[cate]
+
+
 
 def texts(name):
     global ALCHEMY_API_KEY
