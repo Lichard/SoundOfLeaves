@@ -20,7 +20,8 @@ def text():
     return render_template('text.html', error=error)
 
 @app.route('/playlist', methods=['POST'])
-def connie(URL=None):
+@app.route('/playlist/<book>', methods=['Post'])
+def connie(URL=None, book=None):
     mood = texts(request.form['URL'])
     cate = cates(request.form['URL'])
     genre = match(cate)
@@ -35,7 +36,7 @@ def connie(URL=None):
             break
         comma = ","
         foreign_id_string = comma.join(foreign_ids)
-    return render_template("playlist.html", tracks=foreign_id_string)
+    return render_template("playlist.html", tracks=foreign_id_string, book=book)
 
 def match(cate):
     dict1 = {'arts_entertainment':'Classical','business':'Easy Listening','computer_internet':'Electronic','culture_politics':'Pop','gaming':'Electronica','health':'Meditation','law_crime':'Drama','religion':'Gospel','recreation':'Rock','science_tech':'TV Soundtracks','sports':'Metal','weather':'Ambient'}
