@@ -19,12 +19,12 @@
 {% if book == "Velveteen" %}
 <div class="span5 offset1" id="reader" style="width:370px; height:470px; background:#FFFFFF">
 <iframe src="http://monocle.inventivelabs.com.au/books/the-velveteen-rabbit" class="embeddedBook"></iframe>
-{% else %}
+{% elif book == "Divine" %}
 <div class="span5 offset1" id="reader" style="width:370px; height:470px; background:#FFFFFF">
 <p style="text-align:left" class="text-muted"> 
 <h3>Divine Comedy<h3>
 <br />
-<h4>Dante</h4>
+<h4>Dante Alighieri</h4>
 <br /><br /><br /><br />
 &nbsp &nbsp &nbsp &nbsp His glory, by whose might all things are mov'd,
 Pierces the universe, and in one part
@@ -41,6 +41,23 @@ Could store, shall now be matter of my song.
 &nbsp &nbsp &nbsp &nbsp Benign Apollo! this last labour aid,
 And make me such a vessel of thy worth,
 As thy own laurel claims of me</p>
+</div>
+{% else %}
+<div class="span5 offset1" id="reader" style="width:370px; height:470px; background:#FFFFFF">
+<p style="text-align:left" class="text-muted"> 
+<h3>The Importance of Being Ernest<h3>
+<br />
+<h4>Oscar Wilde</h4>
+<br /><br />
+FIRST ACT
+<br /><br />
+SCENE
+<br /><br /><p style="text-align:left">
+Morning-room in Algernon’s flat in Half-Moon Street.  The room is luxuriously and artistically furnished.  The sound of a piano is heard in the adjoining room.
+<br /><br />
+[Lane is arranging afternoon tea on the table, and after the music has ceased, Algernon enters.]
+<br /><br />
+Algernon.  Did you hear what I was playing, Lane?</p>
 </div>
 {% endif %}
 <script>Monocle.Reader('reader');</script>

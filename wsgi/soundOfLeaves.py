@@ -25,9 +25,6 @@ def connie(URL=None, book=None):
     mood = texts(request.form['URL'])
     cate = cates(request.form['URL'])
     genre = match(cate)
-    print genre
-    print mood
-    print cate
     songlist = song.search(style=genre, mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=30, sort='key-asc')
     foreign_ids = []
     for item in songlist:
@@ -43,9 +40,7 @@ def match(cate):
 
     dict2 = {'arts_entertainment':'Jazz','business':'Film Business','computer_internet':'Ambient Pop','culture_politics':'Party Rap','gaming':'Dub','health':'Relaxation','law_crime':'Orchestral','religion':'Christian Rock','recreation':'Funk','science_tech':'Progressive Alternative','Sports':'Alternative Pop/Rock','Weather':'Nature'}
     random.seed()
-    magicnum = random.random()
-    print magicnum
-    if magicnum <= 0.5:
+    if random.random() <= 0.5:
         theDict = dict2
     else:
         theDict = dict1
