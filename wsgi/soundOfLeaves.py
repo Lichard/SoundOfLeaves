@@ -23,6 +23,7 @@ def text():
 def connie(URL=None):
     mood = texts(request.form['URL'])
     cate = cates(request.form['URL'])
+    key = keys(request.form['URL'])
     songlist = song.search(mood=mood, buckets=['tracks','id:spotify-WW'], limit=True, results=20)
     foreign_ids = []
     for item in songlist:
@@ -67,7 +68,14 @@ def cates(name):
     cate = jsonResponse2[u'category']
     return cate
 
-
+def keys(name):
+    global ALCHEMY_API_KEY
+    analyzeURL3 = "http://access.alchemyapi.com/calls/url/URLGetRankedKeywords?apikey=" + ALCHEMY_API_KEY + "&outputMode=json&url=" + name
+    jsonResponse3=json.loads(urllib.urlopen(analyzeURL3).read())
+    pprint.pprint(jsonResponse3)
+    docKey = jsonResponse3[u'keywords']
+    key = docKey[u'keyword']
+    return keys
 
 if __name__ == '__main__':
     app.run()
