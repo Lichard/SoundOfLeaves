@@ -5,11 +5,11 @@
   <form action='/playlist' method='POST'>
     <fieldset>
         <input type="text" name='URL' placeholder="URL of Book here">
-      <span class="help-block">This url will be parsed in our analytics engine and we will use it to create a playlist that fits to the mood of the input text!</span>
       <button type="submit" class="btn">Submit!</button><!--Not sure how to pass the input text to the javascript.-->
     </fieldset>
   </form>
-  <p> You can copy paste HTML or text links from the Gutenberg project or choose from some preselected ones here</p>
+<p>You can paste an HTML book or text links from the Gutenberg project or choose from some preselected ones here.<br />
+    The text will be parsed with AlchemyAPI's text analytics and used to create a playlist in Spotify.</p>
   <form action='/playlist' method='POST'>
       <button type="submit" class="btn" name='URL' value="http://www.gutenberg.org/files/844/844-h/844-h.htm"> The Importance of Being Ernest, Oscar Wilde </button>
   </form>
